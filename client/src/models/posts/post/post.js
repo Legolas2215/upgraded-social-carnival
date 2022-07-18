@@ -13,6 +13,8 @@ import EditIcon from '@mui/icons-material/Edit';
 import moment from 'moment'
 import { useDispatch } from 'react-redux';
 import { deletePost, likePost } from '../../../actions/posts';
+import { shadows } from '@mui/system';
+
 
 const Post = ({ post,setCurrentId }) => {
   const value = post.creator;
@@ -28,7 +30,7 @@ const Post = ({ post,setCurrentId }) => {
   }
 
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 345}}>
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
@@ -70,17 +72,23 @@ const Post = ({ post,setCurrentId }) => {
           </IconButton>
         </Grid>
         <Grid item >
-          <IconButton aria-label="edit" onClick={handleEdit}>
+          <IconButton aria-label="edit" onClick={handleEdit} sx={{':hover':{
+            color: 'red'
+          }}}>
             <EditIcon />
           </IconButton>
         </Grid>
         <Grid item >
-          <IconButton aria-label="delete" onClick={handleDelete}>
+          <IconButton aria-label="delete" onClick={handleDelete} sx={{':hover':{
+            color: 'red'
+          }}}>
             <DeleteForeverIcon />
           </IconButton>
         </Grid>
         <Grid item >
-          <IconButton aria-label="share" >
+          <IconButton aria-label="share" sx={{':hover':{
+            color: 'red'
+          }}}>
           <ShareIcon /> 
           </IconButton>
         </Grid>

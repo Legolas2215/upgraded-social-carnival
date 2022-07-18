@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import Posts from '../models/posts/posts.js'
-import Form from '../models/forms/form.js'
+import Posts from '../../models/posts/posts.js'
+import Form from '../../models/forms/form.js'
 import { Grid, Grow, Box } from '@mui/material'
-import { getPosts } from '../actions/posts.js'
+import { getPosts } from '../../actions/posts.js'
 import { useDispatch } from 'react-redux'
 
 const Home = () => {

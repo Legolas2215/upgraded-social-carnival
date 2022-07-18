@@ -1,0 +1,32 @@
+const post = useSelector((state) => {
+    if(currentId){
+      state.posts.map((post) =>{
+        if(post._id=== currentId){
+          setpostData(post);
+        }
+        
+      })
+    }
+    
+  });
+
+  <Grid item ><Box sx={{ mt: 3, mb: 3 }} ><GoogleLogin
+                clientId="383219579897-ra1iskjc6um398k4bh4c1ig0n7lq59rh.apps.googleusercontent.com"
+                render={(renderProps) => (
+                  <Button
+                    variant="contained"
+                    color="primary" size="large"
+                    onClick={renderProps.onClick}
+                    fullWidth
+                    disabled={renderProps.disabled}
+                    startIcon={<GoogleIcon />}
+                    
+                    
+                  >Google SignIn</Button>
+                )}
+                onSuccess={googleSuccess}
+                onFailure={googleFailure}
+                buttonText="Login"
+                cookiePolicy={'single_host_origin'}
+              />
+              </Box></Grid>
