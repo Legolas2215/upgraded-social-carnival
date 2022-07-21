@@ -1,20 +1,22 @@
-import React, { useState } from 'react'
-import Container from '@mui/material/Container'
-import { Paper, Grid, Typography, Box, Button, Icon } from '@mui/material'
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import InputForm from './InputForm.js'
+import React, { useState } from 'react';
+import Container from '@mui/material/Container';
+import { Paper, Grid, Typography, Box, Button, Icon } from '@mui/material';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle.js';
+import InputForm from './InputForm.js';
 import { GoogleLogin } from 'react-google-login';
-import GoogleIcon from '@mui/icons-material/Google';
+import GoogleIcon from '@mui/icons-material/Google.js';
+import LoginIcon from '@mui/icons-material/Login';
 import { gapi } from "gapi-script";
-import { useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux';
 import { googleLogin } from '../../actions/auth.js';
 import { useNavigate } from 'react-router-dom';
+import {signup,login} from '../../actions/auth.js';
 const Login = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
   gapi.load("client:auth2", () => {
-    gapi.client.init({
+    gapi.auth2.init({
       clientId:
         "383219579897-ra1iskjc6um398k4bh4c1ig0n7lq59rh.apps.googleusercontent.com",
       plugin_name: "chat",
@@ -22,16 +24,25 @@ const Login = () => {
   });
 
 
+  const [signupDetails, setsignupDetails] = useState({firstName:'',lastName:'',email:'',password:'',confirmPassword:''});
+
   const [signUp, setsignUp] = useState(false);
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if(signUp){
+      dispatch(signup(signupDetails));
+    }
+    else{
+      dispatch(login(signupDetails));
+    }
+    console.log(signupDetails);
+  };
+  const handleChange = (e) => {
+
+    setsignupDetails({...signupDetails, [e.target.name]: e.target.value})
 
   };
-  const handleChange = () => {
-
-  };
-  const handleClear = () => {
-
-  };
+  
 
   const googleSuccess =async (res)=>{
     const result = res?.profileObj;
@@ -86,9 +97,7 @@ const Login = () => {
             </Grid>
             <Grid container justifyContent="space-around">
 
-              <Grid item ><Button variant="contained" sx={{ mt: 3, mb: 3 }} color="primary" size="large" type="submit" fullWidth>{signUp ? "sign Up" : "Log In"}</Button></Grid>
-              <Grid item ><Button variant="contained" sx={{ mt: 3, mb: 3 }} color="primary" size="large" onClick={handleClear} fullWidth>Clear</Button>
-              </Grid>
+              <Grid item ><Button variant="contained" sx={{ mt: 3, mb: 3 }} color="primary" size="large" type="submit" fullWidth startIcon={<LoginIcon />}>{signUp ? "sign Up" : "Log In"}</Button></Grid>
               <Grid item ><Box sx={{ mt: 3, mb: 3 }} ><GoogleLogin
                 clientId="383219579897-ra1iskjc6um398k4bh4c1ig0n7lq59rh.apps.googleusercontent.com"
                 render={(renderProps) => (
