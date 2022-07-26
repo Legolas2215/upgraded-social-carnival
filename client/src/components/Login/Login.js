@@ -7,12 +7,11 @@ import { GoogleLogin } from 'react-google-login';
 import GoogleIcon from '@mui/icons-material/Google.js';
 import LoginIcon from '@mui/icons-material/Login';
 import { gapi } from "gapi-script";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { googleLogin } from '../../actions/auth.js';
 import { useNavigate } from 'react-router-dom';
 import {signup,login} from '../../actions/auth.js';
-const Login = () => {
-
+const Login = ({setUsercheck,usercheck}) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   gapi.load("client:auth2", () => {
@@ -27,16 +26,32 @@ const Login = () => {
   const [signupDetails, setsignupDetails] = useState({firstName:'',lastName:'',email:'',password:'',confirmPassword:''});
 
   const [signUp, setsignUp] = useState(false);
+
+  
   const handleSubmit = (e) => {
     e.preventDefault();
+
+
+
     if(signUp){
       dispatch(signup(signupDetails));
+      navigate('/');
     }
     else{
       dispatch(login(signupDetails));
+      navigate('/');
     }
-    console.log(signupDetails);
+    
   };
+  
+  // useSelector((state) => {
+  //   if(first){
+  //     console.log(state.authData)
+  //   }
+    
+  // });
+
+
   const handleChange = (e) => {
 
     setsignupDetails({...signupDetails, [e.target.name]: e.target.value})

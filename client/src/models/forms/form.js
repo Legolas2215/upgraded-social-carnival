@@ -9,14 +9,16 @@ const Form = ({currentId, setCurrentId}) => {
   
   const post = useSelector((state) => currentId ? state.posts.find((p)=> p._id === currentId): null);
 
+  const user = JSON.parse(localStorage.getItem('profile'));
+  // console.log(user.result.name);
   const handleSubmit = (e)=>{
     
     e.preventDefault();
     if(!currentId){
-      dispatch(createPost(postData));
+      dispatch(createPost({...postData, name: user?.result?.name}));
     }
     else{
-      dispatch(updatePost(currentId,postData));
+      dispatch(updatePost(currentId,{...postData, name: user?.result?.name}));
       setCurrentId(null);
     }
     
@@ -29,19 +31,27 @@ const Form = ({currentId, setCurrentId}) => {
   
 
   const handleClear = ()=>{
-    setpostData({creator :'' , title: '', message: '', tags: '',selectedFile: ''})
+    setpostData({title: '', message: '', tags: '',selectedFile: ''})
     setCurrentId(null);
   }
 
   const [postData, setpostData] = useState({
-    creator :'' , title: '', message: '', tags: '',selectedFile: ''
+    title: '', message: '', tags: '',selectedFile: ''
   });
+  if(!user){
+    return (
+      <Paper elevation={5} square>
+        <Typography variant="h4" align="center" sx={{p:1}}>LogIn to create your own memories and like others. Join the gang!!</Typography>
+      </Paper>
+    )
+  }
+
   return (
     <Paper elevation={5} square>
       <form autoComplete='off' onSubmit={handleSubmit} >
         <Box sx={{ml: 2,mr:3}}>
       <Typography variant="h4" align="center" sx={{p:1}}>{!currentId ? 'New' :'Edit' } Post </Typography>
-      <TextField name="creator" sx={{p:0.9}} varaint="outlined" label="Creator" fullWidth value={postData.creator} onChange={(e)=>{setpostData({...postData, creator: e.target.value})}}></TextField>
+      {/* <TextField name="creator" sx={{p:0.9}} varaint="outlined" label="Creator" fullWidth value={postData.creator} onChange={(e)=>{setpostData({...postData, creator: e.target.value})}}></TextField> */}
       <TextField name="Title" sx={{p:0.9}} varaint="outlined" label="Title" fullWidth value={postData.title} onChange={(e)=>{setpostData({...postData, title: e.target.value})}}></TextField>
       <TextField name="Message" sx={{p:0.9}} varaint="outlined" label="Message" fullWidth value={postData.message} onChange={(e)=>{setpostData({...postData, message: e.target.value})}}></TextField>
       <TextField name="Tags" sx={{p:0.9}} varaint="outlined" label="Tags" fullWidth value={postData.tags} onChange={(e)=>{setpostData({...postData, tags: e.target.value.split(',')})}}></TextField>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Navbar from './components/Navbar/Navbar.js'
 import {
   BrowserRouter as Router,
@@ -10,20 +10,19 @@ import Login from './components/Login/Login.js'
 import Home from './components/Home/Home.js'
 
 export const App = () => {
-  
-
+  const [usercheck, setUsercheck] = useState(false);
   return (
 
     <Router>
 
 
-      <Navbar />
+      <Navbar usercheck={usercheck} setUsercheck={setUsercheck} />
       
       
       <Routes>
           <Route path="/" exact element={<Home />}></Route>
           <Route path="/contact" exact element={<ContactUs />}> </Route>
-          <Route path="/auth" exact element={<Login />}></Route>
+          <Route path="/auth" exact element={<Login usercheck={usercheck} setUsercheck={setUsercheck} />}></Route>
           
       </Routes>
 

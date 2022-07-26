@@ -17,7 +17,9 @@ import { shadows } from '@mui/system';
 
 
 const Post = ({ post,setCurrentId }) => {
-  const value = post.creator;
+
+  const user = JSON.parse(localStorage.getItem('profile'));
+  const value = post.name;
   const dispatch = useDispatch();
   const handleEdit = ()=>{
     setCurrentId(post._id);
@@ -28,13 +30,12 @@ const Post = ({ post,setCurrentId }) => {
   const handleLike = ()=>{
     dispatch(likePost(post._id));
   }
-
   return (
     <Card sx={{ maxWidth: 345}}>
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-            {JSON.stringify(value)[1].toUpperCase()}
+            {value[0].toUpperCase()}
           </Avatar>
         }
         sx={{p:2}}
@@ -65,14 +66,16 @@ const Post = ({ post,setCurrentId }) => {
         alignItems="center">
           
         <Grid item >
-          <IconButton aria-label="add to favorites" onClick={handleLike} sx={{':hover':{
+          <IconButton aria-label="add to favorites" disabled={!user?.result} onClick={handleLike} sx={{':hover':{
             color: 'red'
           }}}>
-            <FavoriteIcon /> {post.likeCount}
+            <FavoriteIcon /> {post?.Likes?.length}
           </IconButton>
         </Grid>
         <Grid item >
-          <IconButton aria-label="edit" onClick={handleEdit} sx={{':hover':{
+          <IconButton aria-label="edit" onClick={handleEdit} disabled={
+            (user?.result?.name !== post.name)
+          } sx={{':hover':{
             color: 'red'
           }}}>
             <EditIcon />
@@ -80,8 +83,11 @@ const Post = ({ post,setCurrentId }) => {
         </Grid>
         <Grid item >
           <IconButton aria-label="delete" onClick={handleDelete} sx={{':hover':{
-            color: 'red'
-          }}}>
+            color: 'red' 
+          }}} 
+          disabled={
+            (user?.result?.name !== post.name)
+          }>
             <DeleteForeverIcon />
           </IconButton>
         </Grid>

@@ -5,24 +5,35 @@ import { Link, useLocation } from "react-router-dom";
 import './Navbar.css'
 import { logout } from '../../actions/auth';
 import { useDispatch } from 'react-redux';
-
-const Navbar = () => {
+import decode from 'jwt-decode';
+const Navbar = ({usercheck,setUsercheck}) => {
     const dispatch = useDispatch();
     const location = useLocation();
     const [user, setuser] = useState(JSON.parse(localStorage.getItem('profile')));
 
-    useEffect(() => {
-      const token = user?.token;
-
-        //JWT Token
-
-      setuser(JSON.parse(localStorage.getItem('profile')));
-    }, [location]);
-    
     const handleLogout = ()=>{
-        console.log("hello");
         dispatch(logout());
     }
+    
+    useEffect(() => {
+    const token = user?.token;
+      //   console.log(user);
+      //   console.log(token);
+      if(token){
+          const decodedToken = decode(token);
+          if(decodedToken.exp * 1000 < new Date().getTime()){
+              handleLogout();
+          }
+      }
+        
+        console.log(JSON.parse(localStorage.getItem('profile')));
+        setuser(JSON.parse(localStorage.getItem('profile')));
+        setUsercheck(true)
+    }, [location]);
+    
+    
+    
+
 
     return (
         <>
@@ -49,7 +60,7 @@ const Navbar = () => {
                         !user ?<Grid item ><Link className='link' to="/auth">Login</Link></Grid> :  <Grid item ><Link className='link' to="/auth" onClick={handleLogout}>Log Out</Link></Grid>
                     }
                     {
-                        user && <Grid item ><Link className='link' to="/user">Swastik</Link></Grid>
+                        user && <Grid item ><Link className='link' to="/">{user.result.name}</Link></Grid>
                     }
                     
                 </Grid>
