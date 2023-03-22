@@ -57,22 +57,22 @@ Open your web browser and navigate to http://localhost:3000 to see the app runni
 ## Features
 The app includes the following features:
 
-1.User authentication and authorization <br />
-2.Ability to create, edit, and delete posts <br />
-3.Ability to like and comment on posts <br />
-4.Ability to follow and unfollow users <br />
-5.Newsfeed that displays posts from followed users <br />
-6.User profile that displays user information and their posts <br />
+1. User authentication and authorization <br />
+2. Ability to create, edit, and delete posts <br />
+3. Ability to like and comment on posts <br />
+4. Ability to follow and unfollow users <br />
+5. Newsfeed that displays posts from followed users <br />
+6. User profile that displays user information and their posts <br />
 
 ## Technologies
 The app is built with the following technologies:
-1.React: A JavaScript library for building user interfaces <br />
-2.Node.js: A JavaScript runtime for building server-side applications <br />
-3.Express: A Node.js framework for building web applications <br />
-4.MongoDB: A document-oriented NoSQL database <br />
-5.Mongoose: A MongoDB object modeling tool for Node.js <br />
-6.JWT: A standard for securely transmitting information between parties <br />
-7.Axios: A promise-based HTTP client for making API requests <br />
+*React*: A JavaScript library for building user interfaces <br />
+*Node.js*: A JavaScript runtime for building server-side applications <br />
+*Express*: A Node.js framework for building web applications <br />
+*MongoDB*: A document-oriented NoSQL database <br />
+*Mongoose*: A MongoDB object modeling tool for Node.js <br />
+*JWT*: A standard for securely transmitting information between parties <br />
+*Axios*: A promise-based HTTP client for making API requests <br />
 
 ## Contributing
 
