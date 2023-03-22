@@ -57,29 +57,29 @@ Open your web browser and navigate to http://localhost:3000 to see the app runni
 ## Features
 The app includes the following features:
 
-1.User authentication and authorization
-2.Ability to create, edit, and delete posts
-3.Ability to like and comment on posts
-4.Ability to follow and unfollow users
-5.Newsfeed that displays posts from followed users
-6.User profile that displays user information and their posts
+1.User authentication and authorization <br />
+2.Ability to create, edit, and delete posts <br />
+3.Ability to like and comment on posts <br />
+4.Ability to follow and unfollow users <br />
+5.Newsfeed that displays posts from followed users <br />
+6.User profile that displays user information and their posts <br />
 
 ## Technologies
 The app is built with the following technologies:
-1.React: A JavaScript library for building user interfaces
-2.Node.js: A JavaScript runtime for building server-side applications
-3.Express: A Node.js framework for building web applications
-4.MongoDB: A document-oriented NoSQL database
-5.Mongoose: A MongoDB object modeling tool for Node.js
-6.JWT: A standard for securely transmitting information between parties
-7.Axios: A promise-based HTTP client for making API requests
+1.React: A JavaScript library for building user interfaces <br />
+2.Node.js: A JavaScript runtime for building server-side applications <br />
+3.Express: A Node.js framework for building web applications <br />
+4.MongoDB: A document-oriented NoSQL database <br />
+5.Mongoose: A MongoDB object modeling tool for Node.js <br />
+6.JWT: A standard for securely transmitting information between parties <br />
+7.Axios: A promise-based HTTP client for making API requests <br />
 
 ## Contributing
 
-1.Fork the repository
-2.Create a new branch: `git checkout -b <branch-name>`
-3.Make your changes and commit them: `git commit -m '<commit-message>'`
-4.Push to the branch: `git push origin <branch-name>`
+1.Fork the repository <br />
+2.Create a new branch: `git checkout -b <branch-name>` <br />
+3.Make your changes and commit them: `git commit -m '<commit-message>'` <br />
+4.Push to the branch: `git push origin <branch-name>` <br />
 5.Create a pull request
 
 
